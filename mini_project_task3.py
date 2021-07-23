@@ -137,16 +137,16 @@ order_list = [
         "Customers' Name": 'John', 
         "Customers' Address": 'Unit 2, 12 Main Street, LONDON, WH1 2ER',
         "Customers' Phone Number": '0789887334',
-        "Courier": [courier_list[2]],
-        "Status": [order_status[3]]
+        "Courier": 'Alex',
+        "Status": 'Quality Check'
     }, 
     
     {
         "Customers' Name": 'Serena', 
         "Customers' Address": 'The Moat, 73 Alley Street, LONDON, HA6 9DW',
         "Customers' Phone Number": '07648298501',
-        "Courier": [courier_list[0]],
-        "Status": [order_status[2]]
+        "Courier": 'Usain',
+        "Status": 'Order Confirmed'
     }
 ]              
 
