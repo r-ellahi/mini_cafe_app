@@ -1,4 +1,4 @@
-import pprint
+from pprint import pprint
 product_list = []
 with open('product_list.txt') as load_p_file:
     for load_i in load_p_file:
@@ -14,7 +14,7 @@ with open('courier_list.txt') as load_c_file:
 def main_menu():
     print("""\033[33m\n\tMain Menu:\033[0m""")
     print("""
-        [0] -  To Exit 
+        [0] - To Exit 
         [1] - Product Options
         [2] - Courier Options
         [3] - Order Details
@@ -160,9 +160,9 @@ def orders_details():
         [2] - Enter Details
         [3] - Update Order Status  
         [4] - Update Existing Order
-        [5] - Delete Courier
+        [5] - Delete Order
         
-        Enter your choice here:    '''))
+        \033[33m\n\tEnter your choice here:    \033[0m'''))
     
     if user_input == 0:
         main_menu()
@@ -212,44 +212,33 @@ def orders_details():
             print(key, value)
         order_index = int(input('''
         \033[33m\n\tSelect and order to update:    \033[0m'''))
+        
         chosen_order = order_list[order_index]
 
         for key, value in chosen_order.items():
+
             chosen_value = input(
                 f'\n{key} Has value of {value}. Enter new value for {key}: ')
 
-            if chosen_value == '':
-                chosen_order[key] = value
-                print('\nNothing has been changed')
-            else:
-                chosen_order[key] = chosen_value
-        print(chosen_order)
-    
-    
-    
-    
-    
-    
-    
-#     FOR EACH key-value pair in selected order:
-#     GET user input for updated property
-#     IF user input is blank:
-#     do not update this property
-#     ELSE:
-#     update the property value with user input
+        if chosen_value == '':
+            chosen_order[key] = value
+            print('\nNothing has been changed')
+        else:
+            chosen_order[key] = chosen_value
 
+        print('Your order has been updated:', chosen_order)
         
-        
-        
-        
+    elif user_input == 5:
+        for key, value in enumerate(order_list):
+            print(key, value)
+        delete_order = int(input('''
+        \033[33m\n\tSelect an order to delete:    \033[0m''')) 
+        order_list.pop(delete_order)
+        print('''
+                \033[33m\n\tOrder was deleted successfully.
+                
+        Remaining Orders: 
+                \033[0m''')
+        print(order_list)
+            
 main_menu()
-
-
-
-# # ELSE IF user input is 5:
-# #     # STRETCH GOAL - DELETE courier
-# #     PRINT orders list
-# #     GET user input for order index value
-# #     DELETE order at index in order list
-    
-# main_menu()
