@@ -207,18 +207,29 @@ def orders_details():
         print("""\033[33m\nOrder status has been updated\033[0m""")
         print(order_to_update)
         
-    
     elif user_input == 4:
         for key, value in enumerate(order_list):
             print(key, value)
-        order_index = input('''
-        \033[33m\n\tSelect and order to update:    \033[0m''')
-        
-        for key, value in (order_index):
-            if user_input ==():
-                orders_details()
-            
-            # else: 
+        order_index = int(input('''
+        \033[33m\n\tSelect and order to update:    \033[0m'''))
+        chosen_order = order_list[order_index]
+
+        for key, value in chosen_order.items():
+            chosen_value = input(
+                f'\n{key} Has value of {value}. Enter new value for {key}: ')
+
+            if chosen_value == '':
+                chosen_order[key] = value
+                print('\nNothing has been changed')
+            else:
+                chosen_order[key] = chosen_value
+        print(chosen_order)
+    
+    
+    
+    
+    
+    
     
 #     FOR EACH key-value pair in selected order:
 #     GET user input for updated property
