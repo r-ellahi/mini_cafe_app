@@ -1,4 +1,4 @@
-from pprint import pprint
+import pprint
 product_list = []
 with open('product_list.txt') as load_p_file:
     for load_i in load_p_file:
@@ -21,7 +21,7 @@ def main_menu():
     """)
     
 
-    option = int(input('Enter your choice here: '))
+    option = int(input('    Enter your choice here: '))
     
     if option == 0:
         with open('Product_list.txt', 'w') as save_p_file:
@@ -132,21 +132,24 @@ def courier():
 
 order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'Delivered', 'Unable to Deliver']
 
-order_list = [{
-"Customers' Name": 'John', 
-"Customers' Address": 'Unit 2, 12 Main Street, LONDON, WH1 2ER',
-"Customers' Phone Number": '0789887334',
-"Courier": [courier_list[2]],
-"Status": [order_status[3]]
-}]    
+order_list = [
+    {
+        "Customers' Name": 'John', 
+        "Customers' Address": 'Unit 2, 12 Main Street, LONDON, WH1 2ER',
+        "Customers' Phone Number": '0789887334',
+        "Courier": [courier_list[2]],
+        "Status": [order_status[3]]
+    }, 
+    
+    {
+        "Customers' Name": 'Serena', 
+        "Customers' Address": 'The Moat, 73 Alley Street, LONDON, HA6 9DW',
+        "Customers' Phone Number": '07648298501',
+        "Courier": [courier_list[0]],
+        "Status": [order_status[2]]
+    }
+]              
 
-order_list = [{
-"Customers' Name": 'Serena', 
-"Customers' Address": 'The Moat, 73 Alley Street, LONDON, HA6 9DW',
-"Customers' Phone Number": '07648298501',
-"Courier": [courier_list[0]],
-"Status": [order_status[2]]
-}] 
 
 
 def orders_details():
@@ -190,50 +193,45 @@ def orders_details():
         for key, value in enumerate(order_list):
             print(key, value)
 
-        order_index = int(input("""\033[33m\nPlease select an order to update:\033[0m"""))
+        order_index = int(input("""\033[33m\nPlease select an order to update:   \033[0m"""))
         print('')
 
         for key, value in enumerate(order_status):
             print(key, value)
 
         status_input = int(
-            input("""\033[33m\nChoose an order status to update on the order list:\033[0m"""))
-        ########################################################################
-        order_list[order_index] = status_input
+            input("""\033[33m\nChoose an order status to update on the order list:   \033[0m"""))
+        order_to_update = order_list[order_index]
         
-        print(order_list)
-    
-        ########################################################################
+        order_to_update['Status'] = order_status[status_input]
+        print("""\033[33m\nOrder status has been updated\033[0m""")
+        print(order_to_update)
+        
     
     elif user_input == 4:
+        for key, value in enumerate(order_list):
+            print(key, value)
+        order_index = input('''
+        \033[33m\n\tSelect and order to update:    \033[0m''')
         
+        for key, value in (order_index):
+            if user_input ==():
+                orders_details()
+            
+            # else: 
+    
+#     FOR EACH key-value pair in selected order:
+#     GET user input for updated property
+#     IF user input is blank:
+#     do not update this property
+#     ELSE:
+#     update the property value with user input
 
-
-
+        
+        
+        
+        
 main_menu()
-
-    
-# #     ELSE IF user input is 3:
-# #         # UPDATE existing order status
-# #         PRINT orders list with its index values
-# #         GET user input for order index value
-# #         PRINT order status list with index values
-# #         GET user input for order status index value
-# #         UPDATE status for order
-
-
-# #     ELSE IF user input is 4:
-# #     # STRETCH - UPDATE existing order
-# #     PRINT orders list with its index values
-# #     GET user input for order index value
-    
-    
-# #     FOR EACH key-value pair in selected order:
-# #     GET user input for updated property
-# #     IF user input is blank:
-# #     do not update this property
-# #     ELSE:
-# #     update the property value with user input
 
 
 
