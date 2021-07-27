@@ -1,16 +1,14 @@
 from pprint import pprint
-from mini_project_functions import whitespace, read_csv_file, print_csv_file, dict_append
+from mini_project_functions import whitespace, read_csv_file, print_csv_file, append_dict
 from csv import DictWriter, DictReader
 
-product = []
+product = {}
 # courier = []
 # orders = []
 
 product = read_csv_file('product_list.csv', product)
 # courier = read_csv_file('courier_list.csv', courier)
 # orders = read_csv_file('order.csv', orders)
-
-
 
 order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'Delivered', 'Unable to Deliver']
 
@@ -24,9 +22,8 @@ def main_menu():
         [3] - Order Details
     """)
     
+    option = int(input("""\033[33m\n\tEnter your choice here: \033[0m"""))
 
-    option = int(input('    Enter your choice here: '))
-    
     if option == 0:
         with open('Product_list.txt', 'w') as save_p_file:
             for save_i in product_list:
@@ -45,8 +42,7 @@ def main_menu():
     
     elif option == 3:
         orders_details()
-    
-    
+
 
 def product():
     print("""\033[33m\n\tProduct Options:\033[0m""")
@@ -56,24 +52,31 @@ def product():
         [2] - Create New Product
         [3] - Update Existing Product    
         [4] - Delete a Product''')
-    user_input = int(input('\n Enter your choice here:'))
+    user_input = int(input("""\033[33m\n\tEnter your choice here: \033[0m"""))
+
     
     if user_input == 0:
+        whitespace()
         print('Thanks for visiting!')
+        whitespace()
         exit
         
         
     elif user_input == 1:
-        print_csv_file('product_list.csv', product)
         whitespace()
+        print_csv_file('product_list.csv', product)
         main_menu()
         
         
-        
     elif user_input == 2:
-        print("The current menu is: ", product)
+        whitespace()
+        print("The current menu is: ")
+        print_csv_file('product_list.csv')
+        whitespace()
         new_product = input("What would you like to create?  ")
         product_price = float(input("Enter a price:   "))
+        
+        
         new_product_dict = {}
         new_product_dict['Product'] = new_product
         new_product_dict['Price'] = product_price
