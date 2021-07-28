@@ -15,6 +15,7 @@ def read_csv_file (file_name, csv_to_read):
             csv_list.append(row) 
         return csv_list
 
+
 # SAVE FILES 
 def save_csv_file(file_name, list_name):
     with open(file_name, "w", newline='') as updated:
@@ -32,7 +33,6 @@ def print_csv_file (file_name, *csv_file):
             print(dict(row))
     
 
-
 # Dictionary Append
 def append_dict(file_name, dict_of_elem, field_names):
     # Open file in append mode
@@ -41,3 +41,19 @@ def append_dict(file_name, dict_of_elem, field_names):
         dict_writer = DictWriter(write_obj, fieldnames=field_names)
         # Add dictionary as wor in the csv
         dict_writer.writerow(dict_of_elem)
+
+
+#UPDATE 
+def update_items(chosen_item):
+    for key, value in chosen_item.items():
+        
+        chosen_value = input(
+            f'\n{key} Has the value of {value}. Enter new value for {key}: ')
+
+        if chosen_value == '':
+            chosen_item[key] = value
+            print('\nNothing has been changed')
+        else:
+            chosen_item[key] = chosen_value
+
+        
