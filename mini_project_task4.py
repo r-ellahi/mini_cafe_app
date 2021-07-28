@@ -1,4 +1,4 @@
-from mini_project_functions import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict
+from mini_project_functions import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items
 from csv import DictWriter, DictReader
 
 product = []
@@ -76,5 +76,28 @@ def product_menu():
         append_dict('product_list.csv', new_product_dict, field_names)
         print('Your new product has been created!')
         print(new_product_dict)
+    
+    elif user_input == 3:
+        print("""\033[33m\n\tThe products available are:  \033[0m""")
+        for key, value in enumerate(product):
+            print(key, value)
+            
+        number_input = int(
+            input("""\033[33m\n\tChoose a product by selecting the number and replace with your choice: \033[0m"""))
+        new_variable = product[number_input]
+        update_items(new_variable)
+
+        print("""\033[33m\nHere's the new updated products menu: ", product \033[0m""", product)
+
         
+    elif user_input == 4:
+        print([list((i, product[i]))
+            for i in range(len(product))])
+        whitespace()
+        delete_product_index_value = int(
+            input("""\033[33m\nPlease Enter The Index value Of The Product You Want To Delete : \033[0m"""))
+        whitespace()
+        del product[delete_product_index_value]
+        print("""\033[33m\nThe New Product List Is :\033[0m""", product)
+
 main_menu()
