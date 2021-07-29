@@ -1,5 +1,4 @@
 import csv
-from pprint import pprint
 from csv import DictWriter, DictReader
 
 def whitespace():
@@ -24,15 +23,6 @@ def save_csv_file(file_name, list_name):
             writer.writeheader()
             writer.writerows(list_name)
 
-
-# PRINT FILES 
-def print_csv_file (file_name, *csv_file):
-    with open(file_name, 'r') as csv_print:
-        csv_file = csv.DictReader(csv_print)
-        for row in csv_file:
-            print(dict(row))
-    
-
 # Dictionary Append
 def append_dict(file_name, dict_of_elem, field_names):
     # Open file in append mode
@@ -43,7 +33,7 @@ def append_dict(file_name, dict_of_elem, field_names):
         dict_writer.writerow(dict_of_elem)
 
 
-#UPDATE 
+#UPDATE ITEMS
 def update_items(chosen_item):
     for key, value in chosen_item.items():
         
@@ -56,4 +46,25 @@ def update_items(chosen_item):
         else:
             chosen_item[key] = chosen_value
 
-        
+# PRINT FILES 
+def print_csv_file (file_name, *csv_file):
+    with open(file_name, 'r') as csv_print:
+        csv_file = csv.DictReader(csv_print)
+        for row in csv_file:
+            print(dict(row))
+
+
+# UPDATE DICT - NOT IN USE 
+# def update_dict(chosen_item):
+#         for key, value in chosen_item.items():
+            
+#             chosen_value = input(
+#                 f'\n{key} Has value of {value}. Enter new value for {key}: ')
+            
+#         if chosen_value == '':
+#             chosen_item[key] = value
+#             print('\nNothing has been changed')
+#         else:
+#             chosen_item[key] = chosen_value
+            
+            
