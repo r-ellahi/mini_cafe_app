@@ -1,5 +1,6 @@
 from mini_project_functions import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items
 from csv import DictWriter, DictReader
+from pprint import pprint
 
 product = []
 courier = []
@@ -26,7 +27,9 @@ def main_menu():
         save_csv_file('product_list.csv', product)
         save_csv_file('courier_list.csv', courier)
         save_csv_file('orders.csv', orders)
-        print('Thanks for visiting!')
+        whitespace()
+        print('\tThanks for visiting!')
+        whitespace()
         exit()
     
     elif option == 1:
@@ -39,7 +42,8 @@ def main_menu():
         orders_details()
         
     else:
-        print ('Please enter a valid option')
+        print ('\tPlease enter a valid option')
+        whitespace()
         main_menu()    
         
             
@@ -51,36 +55,33 @@ def product_menu():
         [2] - Create New Product
         [3] - Update Existing Product    
         [4] - Delete a Product''')
+    whitespace()
     user_input = int(input("""\033[33m\n\tEnter your choice here: \033[0m"""))
         
         
     if user_input == 0:
-        whitespace()
-        save_csv_file('product_list.csv', product)
-        print('Thanks for visiting!')
-        whitespace()
         main_menu()
     
     elif user_input == 1:
         whitespace()
-        print(product)
+        pprint(product)
         whitespace()
         product_menu()
     
     elif user_input == 2:
         whitespace()
-        print("The current menu is: ")
+        print("""\033[33m\n\tThe current menu is: \033[0m""")
         print_csv_file('product_list.csv')
         whitespace()
-        new_product = input("What would you like to create?  ")
-        product_price = float(input("Enter a price:   "))
+        new_product = input("""\033[33m\n\tWhat would you like to create?  \033[0m""")
+        product_price = float(input("""\033[33m\n\tEnter a price:   \033[0m"""))
         new_product_dict = {}
         new_product_dict['Product'] = new_product
         new_product_dict['Price'] = product_price
         product.append(new_product_dict)
         field_names = ['Product', 'Price']
         append_dict('product_list.csv', new_product_dict, field_names)
-        print('Your new product has been created!')
+        print("""\033[33m\n\tYour new product has been created!\033[0m""")
         print(new_product_dict)
         whitespace()
         product_menu()
@@ -91,11 +92,12 @@ def product_menu():
             print(key, value)
             
         number_input = int(
-            input("""\033[33m\n\tChoose a product by selecting the number and replace with your choice: \033[0m"""))
+            input("""\033[33m\n\tEnter the number of the product you wish to replace: \033[0m"""))
         new_variable = product[number_input]
         update_items(new_variable)
 
-        print("""\033[33m\nHere's the new updated products menu: ", \033[0m""", product)
+        print("""\033[33m\nHere's the new updated products menu: ", \033[0m""") 
+        pprint(product)
         whitespace()
         product_menu()
         
@@ -104,13 +106,15 @@ def product_menu():
         for key, value in enumerate(product):
                 print(key, value)
         deleted_input = int(
-            input("""\033[33m\nPlease Select The Number Of The Product You Want To Delete : \033[0m"""))       
+            input("""\033[33m\nPlease Select The Number Of The Product You Want To Delete:  \033[0m"""))       
         del product[deleted_input]
-        print("""\033[33m\nThe New Product List Is :\033[0m""", product)
+        print("""\033[33m\nThe New Product List Is :\033[0m""") 
+        pprint(product)
         whitespace()
         product_menu()
         
     else:
+        whitespace()
         print ('Please enter a valid option')
         product_menu()
 
@@ -123,24 +127,23 @@ def courier_menu():
         [3] - Update Courier
         [4] - Delete Courier
                         ''')
-    user_input = int(input('\n Enter your choice here:'))
+    user_input = int(input("""\033[33m\n\tEnter your choice here:  \033[0m"""))
 
     if user_input == 0:    
         whitespace()
-        save_csv_file('courier_list.csv', courier)
         print('Thanks for visiting!')
         whitespace()
         main_menu()    
     
     elif user_input == 1:
         whitespace()
-        print(courier)
+        pprint(courier)
         whitespace()
         courier_menu()  
     
     elif user_input == 2:
         whitespace()
-        print("The current courier list is: ")
+        print("""\033[33m\n\tThe current courier list is: \033[0m""")
         print_csv_file('courier_list.csv')
         whitespace()
         new_courier_name = input("What's the name of the new courier?  ")
@@ -151,12 +154,11 @@ def courier_menu():
         courier.append(new_courier_dict)
         field_names = ['Name','Number']
         append_dict('courier_list.csv', new_courier_dict, field_names)
-        print('Your new courier has been created!')
+        print("""\033[33m\n\tYour new courier has been created!\033[0m""")
         print(new_courier_dict)
         whitespace()
         courier_menu()
-        
-                
+    
     elif user_input == 3:
         print("""\033[33m\n\tThe couriers available are:  \033[0m""")
         for key, value in enumerate(courier):
@@ -167,45 +169,51 @@ def courier_menu():
         new_variable = courier[number_input]
         update_items(new_variable)
 
-        print("""\033[33m\nHere's the new updated courier options: ", \033[0m""", courier)
+        print("""\033[33m\nHere's the new updated courier options:  \033[0m""")
+        pprint(courier)
         whitespace()
         courier_menu()  
     
     elif user_input == 4:
         print("""\033[33m\n\nLets delete a courier\033[0m""")
-        for key, value in enumerate(product):
+        for key, value in enumerate(courier):
                 print(key, value)
         deleted_input = int(
             input("""\033[33m\nSelect The Number Of The Courier You Wish To Delete : \033[0m"""))       
         del product[deleted_input]
-        print("""\033[33m\nThe New Courier List Is :\033[0m""", product)
+        whitespace()
+        print("""\033[33m\nThe New Courier List Is :\033[0m""")
+        pprint(courier)
         whitespace()
         courier_menu()
         
     else:
+        whitespace()
         print ('Please enter a valid option')
         courier_menu()  
 
 
 def orders_details():
     print("""\033[33m\n\tOrder Details:\033[0m""")
-    user_input = int(input('''
+    print('''
         [0] - Return to Main Menu
         [1] - View Order
         [2] - Enter Details
         [3] - Update Order Status  
         [4] - Update Existing Order
         [5] - Delete Order
-        
-        \033[33m\n\tEnter your choice here:    \033[0m'''))
+        ''')
+    user_input = int(input("""\033[33m\n\tEnter your choice here: \033[0m"""))
+    
     
     if user_input == 0:
         main_menu()
     
     elif user_input == 1:
         whitespace()
-        for order in orders:
-            print(order)
+        # for order in orders:
+        #     print(order)
+        pprint(orders)
         whitespace()
         orders_details()
     
@@ -251,7 +259,7 @@ def orders_details():
         
         order_to_update['Status'] = order_status[status_input]
         print("""\033[33m\nOrder status has been updated\033[0m""")
-        print(order_to_update)
+        pprint(order_to_update)
         
     elif user_input == 4:
         for key, value in enumerate (orders):
@@ -261,13 +269,13 @@ def orders_details():
         old_order = updated_order.copy()
         for key, value in updated_order.items():
             print(key, value)
-            chosen_order = input(f'\n{key} Has value of {value}. Enter new value for {key}: ')
+            chosen_order = input(f'\n{key} is currently {value}. Enter new details for {key}: ')
             if chosen_order == '':
                 updated_order[key] = value
                 print('\nNothing has been changed')
             else:
                 updated_order[key] = chosen_order
-        print(f'Your order has been updated from {old_order} to {updated_order}')
+        print(f'\n\tYour order has been updated from {old_order} to {updated_order}')
         orders_details()
 
         
@@ -283,5 +291,6 @@ def orders_details():
         Remaining Orders: 
                 \033[0m''')
         print(orders)
-
+        whitespace()
+        orders_details()
 main_menu()
