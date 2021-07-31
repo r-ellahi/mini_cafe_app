@@ -1,6 +1,8 @@
-from mini_project_functions import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items
+from mp_fucntions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items
+from mp_fucntions_w5 import read_courier_db, read_products_db, new_product_db, new_courier_db
 from csv import DictWriter, DictReader
 from pprint import pprint
+
 
 product = []
 courier = []
@@ -62,26 +64,38 @@ def product_menu():
     if user_input == 0:
         main_menu()
     
-    # elif user_input == 1:
-    # GET all products from products table
-    # PRINT products
+    elif user_input == 1:
+        read_products_db()
+        product_menu()
     
-    # elif user_input == 2:
-    # CREATE new product
-    #  GET user input for product name
-    #  GET user input for product price
-    # INSERT product into products table   
+    elif user_input == 2:
+        print('\n\tHere is the Product Menu:\n\t')
+        read_products_db()
+
+        new_product = input('\n\tPlease Add A New Product To The List : ')
+        new_price = float(input('\n\tPlease Enter Desired Price: '))
+        new_product_db(new_product, new_price)
         
-    # elif user_input == 3:
-    #  # STRETCH GOAL - UPDATE existing product
-    # GET all products from products table
-    # PRINT products with their IDs
-    # GET user input for product ID
-    # GET user input for product name
-    # GET user input for product price
+        print('\n\tHere is the new product menu:\n\t')
+        read_products_db()
+        product()
+    
+    elif user_input == 3:
+        print('\n\tHere is the Product Menu:\n\t')
+        read_products_db()
+    
+    product_id = int(input('Select the product you wish to update using its ID:   '))
+    product_name = input('Enter the product name: ')
+    product_price = float(input('Please enter the price of the product: '))
+    
+    select_row_from_
+    
+    updated_product = (product_id, product_name, product_price)
+    
+    
     # IF any inputs are empty, do not update them
     # UPDATE properties for product in product table    
-            
+    
     # elif user_input == 4:
     #      # STRETCH GOAL - DELETE product
     # GET all products from products table
@@ -107,16 +121,24 @@ def courier_menu():
         whitespace()
         main_menu()
     
-    # elif user_input = 1:
-    # GET all couriers from couriers table
-    # PRINT couriers
+    elif user_input = 1:
+        read_courier_db()
+        courier_menu()
     
-    # elif user_input = 2:
-    # CREATE new courier
-    # GET user input for courier name
-    # GET user input for courier phone number
-    # INSERT courier into couriers table  
-    
+    elif user_input = 2:
+        print('\n\tHere is the Courier List:\n\t')
+        read_courier_db()
+        
+        new_courier = input('\n\tPlease Enter The Name of the Courier : ')
+        new_number = float(input('\n\tPlease Enter Their Number: '))
+        new_courier_db(new_courier, new_number)
+        
+        print('\n\tHere is the new courier list:\n\t')
+        read_courier_db()
+        courier()
+        
+        
+
     # elif user_input = 3:
     # STRETCH GOAL - UPDATE existing courier
     # GET all couriers from couriers table
