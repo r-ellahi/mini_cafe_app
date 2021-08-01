@@ -1,5 +1,6 @@
-from mp_fucntions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items
-from mp_fucntions_w5 import read_courier_db, read_products_db, new_product_db, new_courier_db
+import csv
+from mp_fucntions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
+from mp_fucntions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db
 from csv import DictWriter, DictReader
 from pprint import pprint
 
@@ -69,7 +70,7 @@ def product_menu():
         product_menu()
     
     elif user_input == 2:
-        print('\n\tHere is the Product Menu:\n\t')
+        print('\n\tHere is the Product Menu:')
         read_products_db()
 
         new_product = input('\n\tPlease Add A New Product To The List : ')
@@ -81,27 +82,28 @@ def product_menu():
         product()
     
     elif user_input == 3:
-        print('\n\tHere is the Product Menu:\n\t')
+        print('here is the menu: ')
+        read_products_db()
+        product_id = int(input('Choose Product ID: '))
+        product_name = input('Choose A Product Name: ')
+        product_price = float(input('Choose A Product Price: '))
+
+        update_into_product_db(product_name, product_price, product_id)
+        print('Here is the updated menu: ')
+        read_products_db()
+        
+
+    elif user_input == 4:
+        print('\n\tHere is the Product Menu:')
+        read_products_db()
+                
+        deleted_input = int(input('\n\tSelect a product to delete: '))
+                
+        delete_product_from_db(deleted_input)
+                    
+        print('\n\tHere is the new product menu: ')
         read_products_db()
     
-    product_id = int(input('Select the product you wish to update using its ID:   '))
-    product_name = input('Enter the product name: ')
-    product_price = float(input('Please enter the price of the product: '))
-    
-    select_row_from_
-    
-    updated_product = (product_id, product_name, product_price)
-    
-    
-    # IF any inputs are empty, do not update them
-    # UPDATE properties for product in product table    
-    
-    # elif user_input == 4:
-    #      # STRETCH GOAL - DELETE product
-    # GET all products from products table
-    # PRINT products with their IDs
-    # GET user input for product ID
-    # DELETE product in products table
 
 
 def courier_menu():
@@ -137,24 +139,28 @@ def courier_menu():
         read_courier_db()
         courier()
         
-        
+    elif user_input = 3:
+        print('here is the couriers: ')
+    read_courier_db()
+    new_courier_id = int(input('Choose Courier ID: '))
+    new_courier = input('Choose A Courier Name: ')
+    new_number = float(input('Choose A Courier Number: '))
 
-    # elif user_input = 3:
-    # STRETCH GOAL - UPDATE existing courier
-    # GET all couriers from couriers table
-    # PRINT couriers with their IDs
-    # GET user input for courier ID
-    # GET user input for courier name
-    # GET user input for courier phone number
-    # IF an input is empty, do not update its respective table property
-    # UPDATE properties for courier in courier table
+    update_into_courier_db(new_courier, new_number, new_courier_id)
+    print('Here is the couriers list: ')
+    read_courier_db()
+    courier_menu()
     
-    # elif user_input = 4:
-    # STRETCH GOAL - DELETE courier
-    # GET all couriers from couriers table
-    # PRINT courier with their IDs
-    # GET user input for courier ID
-    # DELETE courier in couriers table
+    elif user_input = 4:
+        print('\n\tHere is the Courier Menu:')
+    read_courier_db()
+            
+    deleted_input = int(input('\n\tSelect a courier to delete: '))
+            
+    delete_courier_from_db(deleted_input)
+                
+    print('\n\tHere is the new product menu: ')
+    read_courier_db()
 
 
 def orders_details():
