@@ -1,13 +1,10 @@
-# docker-compose up -d
-# http://localhost:8080/
-
 import csv
 from csv import DictWriter, DictReader
 import pymysql
 import os
 from dotenv import load_dotenv
 
-########IDRIS CODE ##########
+########PRETTY CODE ##########
 # from prompt_toolkit import print_formatted_text, HTML
 
 # print_formatted_text(HTML('<b> Aliana </b>'))
