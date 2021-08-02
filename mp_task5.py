@@ -5,7 +5,7 @@ from csv import DictWriter, DictReader
 from pprint import pprint
 
 
-product =
+product = []
 courier = []
 orders = []
 
