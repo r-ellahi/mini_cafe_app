@@ -1,5 +1,5 @@
 Customer Name,Customer Address,Customer Phone Number,Courier,Status,Products
-John,"Unit 2, 12 Main Street, LONDON, WH1 2ER",0789887334,2,Preparing,"2, 3, 4"
-Serena,"The Moat, 73 Alley Street, LONDON, HA6 9DW", 07648298501,4,Quality Check,"5, 5, 4"
-Gregg,"Flat C4, 25 Union Terrace, LONDON, E18 7ET", 07966884073, 3, Order Received,"10, 3, 3"
-Katie,"Millhouse 73 Dovery Road LONDON SW9 9NT",07676580705, 8, On Route,"7, 9 , 11"
+John,Unit 2 12 Main Street LONDON WH1 2ER,0789887334,2,Preparing,"2, 3, 4"
+Serena,The Moat 73 Alley Street LONDON HA6 9DW, 07648298501,4,Quality Check,"5, 5, 4"
+Gregg,Flat C4 25 Union Terrace LONDON E18 7ET, 07966884073, 3, Order Received,"10, 3, 3"
+Katie,Millhouse 73 Dovery Road LONDON SW9 9NT,07676580705, 8, On Route,"7, 9 , 11"

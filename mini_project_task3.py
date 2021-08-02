@@ -1,4 +1,5 @@
 from pprint import pprint
+
 product_list = []
 with open('product_list.txt') as load_p_file:
     for load_i in load_p_file:
@@ -211,7 +212,7 @@ def orders_details():
         for key, value in enumerate(order_list):
             print(key, value)
         order_index = int(input('''
-        \033[33m\n\tSelect and order to update:    \033[0m'''))
+        \033[33m\n\tSelect an order to update:    \033[0m'''))
         
         chosen_order = order_list[order_index]
 

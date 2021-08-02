@@ -1,13 +1,13 @@
-Product, Price
-Coffee, 3.25,
-Mocha, 3.25,
-Americano, 3.25,
-Chai, 3.15,
-Tea, 2.5,
-Herbal Tea, 3.15,
-Hot Chocolate, 3.5,
-Cake, 3.1,
-Cookie, 2.25,
-Cinnamon Twist, 2.75,
-Croissant, 2.5,
-Pain Au Chocolat, 2.75,
+Name,Price
+Coffee,3.25
+Mocha,3.25
+Americano,3.25
+Chai,3.15
+Tea,2.5
+Herbal Tea,3.4
+Hot Chocolate,3.5
+Cake,3.1
+Cookie,2.25
+Cinnamon Twist,2.75
+Crossiant,2.5
+Pain Au Chocolat,2.75

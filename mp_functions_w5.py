@@ -68,22 +68,12 @@ def print_csv_file (file_name, *csv_file):
             print(dict(row))
 
 
-# UPDATE DICT - NOT IN USE 
-# def update_dict(chosen_item):
-#         for key, value in chosen_item.items():
-            
-#             chosen_value = input(
-#                 f'\n{key} Has value of {value}. Enter new value for {key}: ')
-            
-#         if chosen_value == '':
-#             chosen_item[key] = value
-#             print('\nNothing has been changed')
-#         else:
-#             chosen_item[key] = chosen_value
-            
 
-############### FUNCTIONS FOR DATABASE BELOW #############
-#read/print from products
+
+########### WEEK 5 - TO DATABASE ###############
+
+
+##### OPTION 1 - TO PRINT #######
 def read_products_db():
     load_dotenv()
     host = os.environ.get("mysql_host")
@@ -110,7 +100,6 @@ def read_products_db():
     connection.close()
 
 
-#READ/PRINT FROM COURIERS
 def read_courier_db():
     load_dotenv()
     host = os.environ.get("mysql_host")
@@ -137,6 +126,8 @@ def read_courier_db():
     connection.close()
 
 
+
+##### OPTION 2 - TO CREATE #######
 def new_product_db(product_name, product_price):
     load_dotenv()
     host = os.environ.get("mysql_host")
@@ -187,55 +178,91 @@ def new_courier_db(courier_name, courier_number):
     connection.close()
 
 
-def update_into_product_db(new_product, new_price, new_product_id):
+
+##### OPTION 3 - TO UPDATE #######
+def update_into_product_db(new_product, new_price, product_id):
     load_dotenv()
     host = os.environ.get("mysql_host")
     user = os.environ.get("mysql_user")
     password = os.environ.get("mysql_pass")
     database = os.environ.get("mysql_db")
-
     connection = pymysql.connect(
         host,
         user,
         password,
         database
     )
-
+    
     cursor = connection.cursor()
-
-    sql = 'UPDATE products SET product_name = %s, price = %s WHERE product_id = %s'
-    val = [(new_product, new_price, new_product_id)]
-    cursor.executemany(sql, val)
-
-    connection.commit()
+    if new_product or new_price:
+        sql = 'UPDATE products SET'
+        if new_product and new_price:
+            sql += ' product_name = %s, price = %s WHERE product_id = %s'
+            val = (new_product, new_price, product_id)
+            print("\nNothing has been updated")
+            
+        elif new_product:
+            sql += ' product_name = %s WHERE product_id = %s'
+            val = (new_product, product_id)
+            print("\nNothing has been updated")
+            
+        elif new_price:
+            sql += ' price = %s WHERE product_id = %s'
+            val = (new_price, product_id)
+            print("\nNothing has been updated")
+            
+        cursor.execute(sql, val)
+        connection.commit()
+        
+    else:
+        print("Nothing has been updated")
     cursor.close()
     connection.close()
 
 
-def update_into_courier_db(new_courier, new_number, new_courier_id):
+def update_into_courier_db(new_courier, new_number, courier_id):
     load_dotenv()
     host = os.environ.get("mysql_host")
     user = os.environ.get("mysql_user")
     password = os.environ.get("mysql_pass")
     database = os.environ.get("mysql_db")
-
     connection = pymysql.connect(
         host,
         user,
         password,
         database
     )
-
+    
     cursor = connection.cursor()
-
-    sql = 'UPDATE couriers SET courier_name = %s, phone_number = %s WHERE courier_id = %s'
-    val = [(new_courier, new_number, new_courier_id)]
-    cursor.executemany(sql, val)
-
-    connection.commit()
+    if new_courier or new_number:
+        sql = 'UPDATE couriers SET'
+        if new_courier and new_number:
+            sql += ' courier_name = %s, phone_number = %s WHERE courier_id = %s'
+            val = (new_courier, new_number, courier_id)
+            print("\nNothing has been updated")
+            
+        elif new_courier:
+            sql += ' courier_name = %s WHERE courier_id = %s'
+            val = (new_courier, courier_id)
+            print("\nNothing has been updated")
+            
+        elif new_number:
+            sql += ' phone_number = %s WHERE courier_id = %s'
+            val = (new_number, courier_id)
+            print("\nNothing has been updated")
+            
+        cursor.execute(sql, val)
+        connection.commit()
+        
+    else:
+        print("\nNothing has been updated")
+        
     cursor.close()
     connection.close()
 
+
+
+##### OPTION 4 - TO DELETE #######
 
 def delete_product_from_db(deleted_product_id):
     load_dotenv()
@@ -286,28 +313,4 @@ def delete_courier_from_db(deleted_courier_id):
     cursor.close()
     connection.close()
 
-def change_into_product_db(new_product, new_price, new_product_id):
-    load_dotenv()
-    host = os.environ.get("mysql_host")
-    user = os.environ.get("mysql_user")
-    password = os.environ.get("mysql_pass")
-    database = os.environ.get("mysql_db")
-    connection = pymysql.connect(
-        host,
-        user,
-        password,
-        database
-    )
-    cursor = connection.cursor()
-    sql = 'UPDATE Products SET Product_Name = %s'
-    if new_price:
-        sql += ', Product_Price = %s'
-        val = (new_product, new_price, new_product_id)
-    else:
-        val = (new_product, new_price)
-    sql += ' WHERE Product_Id = %s'
-    cursor.execute(sql, val)
-    connection.commit()
-    cursor.close()
-    connection.close()
 
