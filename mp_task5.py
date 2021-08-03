@@ -124,9 +124,6 @@ def courier_menu():
     user_input = int(input("""\033[33m\n\tEnter your choice here:  \033[0m"""))
 
     if user_input == 0:    
-        whitespace()
-        print('Thanks for visiting!')
-        whitespace()
         main_menu()
     
     elif user_input == 1:
@@ -134,37 +131,39 @@ def courier_menu():
         courier_menu()
     
     elif user_input == 2:
-        print('\n\tHere is the Courier List:\n\t')
+        print('\033[95m\n\tHere is the Courier List: \033[0m')
         read_courier_db()
         
-        new_courier = input('\n\tPlease Enter The Name of the Courier : ')
-        new_number = (float(input('\n\tPlease Enter Their Number: ')))
+        new_courier = input('\033[95m\n\tPlease Enter The Name of the Courier : \033[0m')
+        new_number = (float(input('\033[95m\n\tPlease Enter Their Number: \033[0m')))
         new_courier_db(new_courier, new_number)
         
-        print('\n\tHere is the new courier list: ')
+        print('\033[94m\n\tHere Is The New Courier List: \033[0m')
         read_courier_db()
         courier_menu()
         
         
     elif user_input == 3:
-        print('Here Is The Courier List: ')
+        print('\033[95m\n\t Here Is The Courier List: \033[0m')
         read_courier_db()
-        courier_id = int(input('Choose Courier ID: '))
-        new_courier = input('Enter A New Courier Name: ')
-        new_number = (input('Enter A New Courier Number: '))
+        courier_id = int(input('\033[96m\n\t Choose Courier ID: \033[0m'))
+        new_courier = input('\033[96m\n\t Enter A New Courier Name: \033[0m')
+        new_number = (input('\033[96m\n\t Enter A New Courier Number: \033[0m'))
 
         update_into_courier_db(new_courier, new_number, courier_id)
-        print('Here is the updated menu: ')
+        print('\033[95m\n\t Here is the updated menu: \033[0m')
         read_courier_db()
         courier_menu()
 
-    elif user_input == 4:        
+    elif user_input == 4: 
+        print('\033[95m\n\tHere is the Courier List:\033[0m')
         read_courier_db()
-        deleted_input = int(input('\n\tSelect a courier to delete: '))
+        
+        deleted_input = int(input('\033[96m\n\tSelect A Courier To Delete: \033[0m'))
         
         delete_courier_from_db(deleted_input)
                     
-        print('\n\tHere is the new product menu: ')
+        print('\033[95m\n\t Here is the new product menu: \033[0m')
         read_courier_db()
         courier_menu()
 
