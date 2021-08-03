@@ -230,17 +230,17 @@ def update_into_courier_db(new_courier, new_number, courier_id):
         if new_courier and new_number:
             sql += ' courier_name = %s, phone_number = %s WHERE courier_id = %s'
             val = (new_courier, new_number, courier_id)
-            print("\nNothing has been updated")
+            print("\nBoth Courier and Number Have Been Updated")
             
         elif new_courier:
             sql += ' courier_name = %s WHERE courier_id = %s'
             val = (new_courier, courier_id)
-            print("\nNothing has been updated")
+            print("\nCourier Name Has Been Updated")
             
         elif new_number:
             sql += ' phone_number = %s WHERE courier_id = %s'
             val = (new_number, courier_id)
-            print("\nNothing has been updated")
+            print("\nCourier Number Has Been Updated")
             
         cursor.execute(sql, val)
         connection.commit()
