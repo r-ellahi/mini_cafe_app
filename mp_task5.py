@@ -151,19 +151,19 @@ def courier_menu():
         new_number = (input('\033[96m\n\t Enter A New Courier Number: \033[0m'))
 
         update_into_courier_db(new_courier, new_number, courier_id)
-        print('\033[95m\n\t Here is the updated menu: \033[0m')
+        print('\033[95m\n\t Here Is The Updated Courier List: \033[0m')
         read_courier_db()
         courier_menu()
 
     elif user_input == 4: 
-        print('\033[95m\n\tHere is the Courier List:\033[0m')
+        print('\033[95m\n\tHere Is The Courier List:\033[0m')
         read_courier_db()
         
         deleted_input = int(input('\033[96m\n\tSelect A Courier To Delete: \033[0m'))
         
         delete_courier_from_db(deleted_input)
                     
-        print('\033[95m\n\t Here is the new product menu: \033[0m')
+        print('\033[95m\n\t Here Is The New Courier List: \033[0m')
         read_courier_db()
         courier_menu()
 
