@@ -1,16 +1,11 @@
+#docker-compose up -d
+#http://localhost:8080/
+
 import csv
 from csv import DictWriter, DictReader
 import pymysql
 import os
-from dotenv import load_dotenv
-
-########PRETTY CODE ##########
-# from prompt_toolkit import print_formatted_text, HTML
-
-# print_formatted_text(HTML('<b> Aliana </b>'))
-# print_formatted_text(HTML('<i> Oussama </i>'))
-# print_formatted_text(HTML('<u> <b> Rumaanah </b </u>'))
-
+from dotenv import load_dotenv 
 
 
 def whitespace():
@@ -68,7 +63,6 @@ def print_csv_file (file_name, *csv_file):
 
 
 ########### WEEK 5 - TO DATABASE ###############
-
 
 ##### OPTION 1 - TO PRINT #######
 def read_products_db():
@@ -196,17 +190,17 @@ def update_into_product_db(new_product, new_price, product_id):
         if new_product and new_price:
             sql += ' product_name = %s, price = %s WHERE product_id = %s'
             val = (new_product, new_price, product_id)
-            print("\nNothing has been updated")
+            print("\nBoth Price and Product has been updated")
             
         elif new_product:
             sql += ' product_name = %s WHERE product_id = %s'
             val = (new_product, product_id)
-            print("\nNothing has been updated")
+            print("\nProducts has been updated")
             
         elif new_price:
             sql += ' price = %s WHERE product_id = %s'
             val = (new_price, product_id)
-            print("\nNothing has been updated")
+            print("\nPrice has been updated")
             
         cursor.execute(sql, val)
         connection.commit()
