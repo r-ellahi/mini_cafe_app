@@ -2,7 +2,7 @@ import csv
 import json
 from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
-from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db
+from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db, welcome_title
 from csv import DictWriter, DictReader
 
 
@@ -15,6 +15,8 @@ courier = read_csv_file('courier_list.csv', courier)
 orders = read_csv_file('orders.csv', orders)
 
 order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'Delivered', 'Unable to Deliver']
+
+welcome_title()
 
 def main_menu():
     whitespace()
