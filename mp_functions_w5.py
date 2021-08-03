@@ -7,6 +7,18 @@ import pymysql
 import os
 from dotenv import load_dotenv 
 
+def welcome_title():
+    import time
+    print("\033[93m\n\t W H A T ' S \033[0m")
+
+    print("\033[94m\n\t   T H E \033[0m")
+
+    print("\033[95m\n\t   T E A \033[0m")
+
+    print("\033[92m\n\t  C A F E \033[0m")
+    time.sleep(1.0)
+    whitespace()
+
 
 def whitespace():
     print('\n')
