@@ -1,4 +1,5 @@
 import csv
+from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
 from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db
 from csv import DictWriter, DictReader
@@ -16,7 +17,8 @@ orders = read_csv_file('orders.csv', orders)
 order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'Delivered', 'Unable to Deliver']
 
 def main_menu():
-    print("""\033[33m\n\tMain Menu:\033[0m""")
+    whitespace()
+    print('\033[33m\n\tMain Menu:\033[0m')
     print("""
         [0] - To Exit 
         [1] - Product Options
@@ -31,7 +33,7 @@ def main_menu():
         save_csv_file('courier_list.csv', courier)
         save_csv_file('orders.csv', orders)
         whitespace()
-        print('\tThanks for visiting!')
+        print_formatted_text(HTML('<i> \tThanks for visiting!</i>'))
         whitespace()
         exit()
     
@@ -51,6 +53,7 @@ def main_menu():
 
 
 def product_menu():
+    whitespace()
     print("""\033[33m\n\tProduct Options:\033[0m""")
     print('''
         [0] - Return to Main Menu
@@ -108,6 +111,7 @@ def product_menu():
 
 
 def courier_menu():
+    whitespace()
     print("""\033[33m\n\tCourier Options:\033[0m""")
     print('''
         [0] - Return to Main Menu
@@ -165,38 +169,38 @@ def courier_menu():
 
 
 def orders_details():
-    print("""\033[33m\n\tOrder Details:\033[0m""")
+    whitespace()
+    print('\033[33m\n\tOrder Details:\033[0m')
     print('''
         [0] - Return to Main Menu
-        [1] - View Order
+        [1] - View Orders
         [2] - Enter Details
         [3] - Update Order Status  
         [4] - Update Existing Order
         [5] - Delete Order
         ''')
-    user_input = int(input("""\033[33m\n\tEnter your choice here: \033[0m"""))
+    user_input = int(input('\033[33m\n\tEnter your choice here: \033[0m'))
     
     
     if user_input == 0:
         main_menu()
+        
 
     elif user_input == 1:
         whitespace()
-        # for order in orders:
-        #     print(order)
-        pprint(orders)
-        whitespace()
+        for key, value in enumerate(orders):
+            print(f'Order Number - {key}{value}\n\t')
         orders_details()
 
     elif user_input == 2:
         customer_name = input("\tEnter your name: ")
         customer_address = input("\tEnter your address: ")
         customer_number = int(input("\tEnter your number: "))
-        
+        whitespace()
         for value, index in enumerate(product):
             print(value, index)
         product_choice = input('Please select your products: ')
-        
+        whitespace()
         for value, index in enumerate(courier):
             print(value, index)
         courier_choice = int(input('Who would you like to deliver your order:?  '))
@@ -211,13 +215,14 @@ def orders_details():
         
         titles = ['Customer Name', "Customer Address", 'Customer Phone Number','Courier', 'Status', "Products"]
         append_dict('orders.csv', entry, titles)
-        
-        print('Thank you for your order', entry)
+        whitespace()
+        print_formatted_text(HTML('<b> Thank you for your order </b>'))
+        print(entry)
         orders_details()
 
     elif user_input == 3:
         for key, value in enumerate(orders):
-            print(key, value)
+            print(f'Order Number - {key}{value}\n\t')
 
         order_index = int(input("""\033[33m\nPlease select an order to update:   \033[0m"""))
         print('')
@@ -235,34 +240,38 @@ def orders_details():
         orders_details()
 
     elif user_input == 4:
-        for key, value in enumerate (orders):
-            print(key, value)
+        for key, value in enumerate(orders):
+            print(f'Order Number - {key}{value}\n\t')
         order_index = int(input(''' \033[33m\n\tSelect an order to update:    \033[0m'''))
         updated_order = orders[order_index] 
         old_order = updated_order.copy()
+        
         for key, value in updated_order.items():
             print(key, value)
-            chosen_order = input(f'\n{key} is currently {value}. Enter new details for {key}: ')
+            chosen_order = input(f'\nThe {key} is currently {value}. Enter new details for {key}: ')
             if chosen_order == '':
                 updated_order[key] = value
-                print('\nNothing has been changed')
+                print_formatted_text(HTML('<b> Nothing Has Been Changed </b>'))
+                whitespace()
             else:
                 updated_order[key] = chosen_order
+                whitespace()
+        
         print(f'\n\tYour order has been updated from {old_order} to {updated_order}')
         orders_details()
 
     elif user_input == 5:
         for key, value in enumerate(orders):
-            print(key, value)
+            print(f'Order Number - {key}{value}\n\t')
         delete_order = int(input('''
         \033[33m\n\tSelect an order to delete:    \033[0m''')) 
         orders.pop(delete_order)
-        print('''
-                \033[33m\n\tOrder was deleted successfully.
-                
-        Remaining Orders: 
-                \033[0m''')
-        print(orders)
+        print('''\033[33m\n\tOrder was deleted successfully.\033[0m''')
+        whitespace()
+        print('''\033[33m\n\tRemaining Orders: \033[0m''')
+        
+        for key, value in enumerate(orders):
+            print(f'Order Number - {key}{value}\n\t')
         whitespace()
         orders_details()
 main_menu()
