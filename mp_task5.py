@@ -1,4 +1,5 @@
 import csv
+import json
 from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
 from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db
@@ -184,12 +185,12 @@ def orders_details():
     
     if user_input == 0:
         main_menu()
-        
 
     elif user_input == 1:
         whitespace()
-        for key, value in enumerate(orders):
-            print(f'Order Number - {key}{value}\n\t')
+        # for key, value in enumerate(orders):
+        #     print(f'Order Number - {key}{value}\n\t')
+        print(json.dumps(orders, sort_keys=False, indent=4))
         orders_details()
 
     elif user_input == 2:
@@ -223,7 +224,6 @@ def orders_details():
     elif user_input == 3:
         for key, value in enumerate(orders):
             print(f'Order Number - {key}{value}\n\t')
-
         order_index = int(input("""\033[33m\nPlease select an order to update:   \033[0m"""))
         print('')
 
@@ -236,12 +236,13 @@ def orders_details():
         
         order_to_update['Status'] = order_status[status_input]
         print("""\033[33m\nOrder status has been updated\033[0m""")
-        pprint(order_to_update)
+        print(json.dumps(orders, sort_keys=False, indent=4))
         orders_details()
 
     elif user_input == 4:
         for key, value in enumerate(orders):
             print(f'Order Number - {key}{value}\n\t')
+            
         order_index = int(input(''' \033[33m\n\tSelect an order to update:    \033[0m'''))
         updated_order = orders[order_index] 
         old_order = updated_order.copy()
@@ -270,8 +271,7 @@ def orders_details():
         whitespace()
         print('''\033[33m\n\tRemaining Orders: \033[0m''')
         
-        for key, value in enumerate(orders):
-            print(f'Order Number - {key}{value}\n\t')
+        print(json.dumps(orders, sort_keys=False, indent=4))
         whitespace()
         orders_details()
 main_menu()
