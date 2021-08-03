@@ -4,7 +4,6 @@ from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
 from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db
 from csv import DictWriter, DictReader
-from pprint import pprint
 
 
 product = []
@@ -19,7 +18,7 @@ order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'De
 
 def main_menu():
     whitespace()
-    print('\033[33m\n\tMain Menu:\033[0m')
+    print('\033[96m\n\tMain Menu:\033[0m')
     print("""
         [0] - To Exit 
         [1] - Product Options
@@ -55,7 +54,7 @@ def main_menu():
 
 def product_menu():
     whitespace()
-    print("""\033[33m\n\tProduct Options:\033[0m""")
+    print("""\033[96m\n\tProduct Options:\033[0m""")
     print('''
         [0] - Return to Main Menu
         [1] - View Menu
@@ -74,38 +73,39 @@ def product_menu():
         product_menu()
     
     elif user_input == 2:
-        print('\n\tHere is the Product Menu:')
+        print('\033[95m\n\tHere is the Product Menu: \033[0m')
         read_products_db()
 
-        new_product = input('\n\tPlease Add A New Product To The List : ')
-        new_price = float(input('\n\tPlease Enter Desired Price: '))
+        new_product = input('\033[95m\n\tPlease Add A New Product To The List : \033[0m')
+        new_price = float(input('\033[95m\n\tPlease Enter Desired Price: \033[0m'))
         new_product_db(new_product, new_price)
         
-        print('\n\tHere is the new product menu:\n\t')
+        print('\033[94m\n\tHere Is The New Product Menu: \033[0m')
         read_products_db()
         product_menu()
     
     elif user_input == 3:
-        print('Here is the menu: ')
+        whitespace()
+        print('\033[95m\n\t Here Is A List of The Current Product Menu: \033[0m')
         read_products_db()
-        product_id = int(input('Choose The Product ID: '))
-        new_product = input('Enter A Name For Your Product: ')
-        new_price = (input('Eneter A Price: '))
+        product_id = int(input('\033[96m\n\t Choose The Product ID: \033[0m'))
+        new_product = input('\033[96m\n\t Enter A Name For Your Product: \033[0m')
+        new_price = (input('\033[96m\n\t Enter A Price: \033[0m'))
 
         update_into_product_db(new_product, new_price, product_id)
-        print('Here is the updated menu: ')
+        print('\033[95m\n\t Here is the updated menu: \033[0m')
         read_products_db()
         product_menu()
 
     elif user_input == 4:
-        print('\n\tHere is the Product Menu:')
+        print('\033[95m\n\tHere is the Product Menu:\033[0m')
         read_products_db()
                 
-        deleted_input = int(input('\n\tSelect a product to delete: '))
+        deleted_input = int(input('\033[96m\n\tSelect a product to delete: \033[0m'))
                 
         delete_product_from_db(deleted_input)
                     
-        print('\n\tHere is the new product menu: ')
+        print('\033[95m\n\t Here is the new product menu: \033[0m')
         read_products_db()
         product_menu()
     
@@ -113,7 +113,7 @@ def product_menu():
 
 def courier_menu():
     whitespace()
-    print("""\033[33m\n\tCourier Options:\033[0m""")
+    print("""\033[96m\n\tCourier Options:\033[0m""")
     print('''
         [0] - Return to Main Menu
         [1] - Print Courier List
@@ -171,7 +171,7 @@ def courier_menu():
 
 def orders_details():
     whitespace()
-    print('\033[33m\n\tOrder Details:\033[0m')
+    print('\033[96m\n\tOrder Details:\033[0m')
     print('''
         [0] - Return to Main Menu
         [1] - View Orders
@@ -218,7 +218,7 @@ def orders_details():
         append_dict('orders.csv', entry, titles)
         whitespace()
         print_formatted_text(HTML('<b> Thank you for your order </b>'))
-        print(entry)
+        print(json.dumps(entry, sort_keys=False, indent=4))
         orders_details()
 
     elif user_input == 3:
@@ -235,7 +235,9 @@ def orders_details():
         order_to_update = orders[order_index]
         
         order_to_update['Status'] = order_status[status_input]
-        print("""\033[33m\nOrder status has been updated\033[0m""")
+        print("""\033[33m\nOrder status has been updated
+            The New Order List is: \033[0m""")
+        
         print(json.dumps(orders, sort_keys=False, indent=4))
         orders_details()
 
@@ -258,7 +260,15 @@ def orders_details():
                 updated_order[key] = chosen_order
                 whitespace()
         
-        print(f'\n\tYour order has been updated from {old_order} to {updated_order}')
+        # print(f'\n\tYour order has been updated from {old_order} to {updated_order}')
+
+        print('\033[95m\n\tYour order has been updated from: \033[0m')
+        print(old_order)
+        
+        print('\033[95m\n\t TO: \033[0m')
+        
+        print(updated_order)
+        
         orders_details()
 
     elif user_input == 5:
