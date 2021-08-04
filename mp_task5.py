@@ -1,10 +1,7 @@
-import csv
 import json
 from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
 from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db, welcome_title
-from csv import DictWriter, DictReader
-
 
 product = []
 courier = []
@@ -17,7 +14,6 @@ orders = read_csv_file('orders.csv', orders)
 order_status = ['Order Confirmed', 'Preparing', 'Quality Check', 'On Route', 'Delivered', 'Unable to Deliver']
 
 welcome_title()
-
 def main_menu():
     whitespace()
     print('\033[96m\n\tMain Menu:\033[0m')
@@ -111,6 +107,11 @@ def product_menu():
         read_products_db()
         product_menu()
     
+    else:
+        print ('\tPlease enter a valid option')
+        whitespace()
+        product_menu()   
+    
 
 
 def courier_menu():
@@ -168,6 +169,11 @@ def courier_menu():
         print('\033[95m\n\t Here Is The New Courier List: \033[0m')
         read_courier_db()
         courier_menu()
+        
+    else:
+        print ('\tPlease enter a valid option')
+        whitespace()
+        courier_menu()   
 
 
 def orders_details():
@@ -176,7 +182,7 @@ def orders_details():
     print('''
         [0] - Return to Main Menu
         [1] - View Orders
-        [2] - Enter Details
+        [2] - Create A New Order
         [3] - Update Order Status  
         [4] - Update Existing Order
         [5] - Delete Order
@@ -189,8 +195,8 @@ def orders_details():
 
     elif user_input == 1:
         whitespace()
-        # for key, value in enumerate(orders):
-        #     print(f'Order Number - {key}{value}\n\t')
+        #for key, value in enumerate(orders):
+        #   print(f'Order Number - {key}{value}\n\t')
         print(json.dumps(orders, sort_keys=False, indent=4))
         orders_details()
 
@@ -201,7 +207,9 @@ def orders_details():
         whitespace()
         for value, index in enumerate(product):
             print(value, index)
+            
         product_choice = input('Please select your products: ')
+        
         whitespace()
         for value, index in enumerate(courier):
             print(value, index)
@@ -209,17 +217,21 @@ def orders_details():
         
         entry = {}
         entry['Customer Name'] = customer_name 
-        entry ['Customer Address'] = customer_address
-        entry ['Customer Phone Number'] = customer_number
-        entry ['Courier'] = courier_choice
+        entry['Customer Address'] = customer_address
+        entry['Customer Phone Number'] = customer_number
+        entry['Courier'] = courier_choice
         entry['Status'] = order_status[1]
         entry['Products'] = product_choice
         
         titles = ['Customer Name', "Customer Address", 'Customer Phone Number','Courier', 'Status', "Products"]
         append_dict('orders.csv', entry, titles)
         whitespace()
-        print_formatted_text(HTML('<b> Thank you for your order </b>'))
-        print(json.dumps(entry, sort_keys=False, indent=4))
+        print(entry)
+        whitespace()
+        # print(orders)
+        #whitespace()
+        print('Thank you for your order')
+        # print(json.dumps(entry, sort_keys=False, indent=4))
         orders_details()
 
     elif user_input == 3:
@@ -285,4 +297,9 @@ def orders_details():
         print(json.dumps(orders, sort_keys=False, indent=4))
         whitespace()
         orders_details()
+    
+    else:
+        print ('\tPlease enter a valid option')
+        whitespace()
+        orders_details()   
 main_menu()
