@@ -10,11 +10,11 @@ from dotenv import load_dotenv
 def welcome_title():
     import time
     print("\033[93m\n\t W H A T ' S \033[0m")
-
+    time.sleep(0.75)
     print("\033[94m\n\t   T H E \033[0m")
-
+    time.sleep(0.75)
     print("\033[95m\n\t   T E A \033[0m")
-
+    time.sleep(0.75)
     print("\033[92m\n\t  C A F E \033[0m")
     time.sleep(1.0)
     whitespace()
@@ -43,11 +43,8 @@ def save_csv_file(file_name, list_name):
 
 # Dictionary Append
 def append_dict(file_name, dict_of_elem, field_names):
-    # Open file in append mode
     with open(file_name, 'a+', newline='') as write_obj:
-        # Create a writer object from csv module
         dict_writer = DictWriter(write_obj, fieldnames=field_names)
-        # Add dictionary as wor in the csv
         dict_writer.writerow(dict_of_elem)
 
 
@@ -74,7 +71,7 @@ def print_csv_file (file_name, *csv_file):
 
 
 
-########### WEEK 5 - TO DATABASE ###############
+########### WEEK 5 - DATABASE ###############
 
 ##### OPTION 1 - TO PRINT #######
 def read_products_db():
