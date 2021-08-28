@@ -50,7 +50,7 @@ def main_menu():
         main_menu()    
 
 
-def product_menu():=
+def product_menu()
     whitespace()
     print("""\033[96m\n\tProduct Options:\033[0m""")
     print('''
