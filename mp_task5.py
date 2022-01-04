@@ -1,5 +1,5 @@
 import json
-from prompt_toolkit import print_formatted_text, HTML
+# from prompt_toolkit import print_formatted_text, HTML
 from mp_functions_w5 import whitespace, read_csv_file, print_csv_file, save_csv_file, append_dict, update_items, read_courier_db, update_into_courier_db
 from mp_functions_w5 import read_products_db, new_product_db, new_courier_db, delete_product_from_db, delete_courier_from_db, update_into_product_db, welcome_title
 
@@ -50,7 +50,7 @@ def main_menu():
         main_menu()    
 
 
-def product_menu()
+def product_menu():
     whitespace()
     print("""\033[96m\n\tProduct Options:\033[0m""")
     print('''

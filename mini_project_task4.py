@@ -242,6 +242,7 @@ def orders_details():
         append_dict('orders.csv', entry, titles)
         
         print('Thank you for your order', entry)
+        orders_details()
 
     elif user_input == 3:
         for key, value in enumerate(orders):
