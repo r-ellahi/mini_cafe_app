@@ -123,11 +123,11 @@ def courier_menu():
         whitespace()
         main_menu()
     
-    elif user_input = 1:
+    elif user_input ==1:
         read_courier_db()
         courier_menu()
     
-    elif user_input = 2:
+    elif user_input == 2:
         print('\n\tHere is the Courier List:\n\t')
         read_courier_db()
         
@@ -139,7 +139,7 @@ def courier_menu():
         read_courier_db()
         courier()
         
-    elif user_input = 3:
+    elif user_input == 3:
         print('here is the couriers: ')
     read_courier_db()
     new_courier_id = int(input('Choose Courier ID: '))
@@ -151,7 +151,7 @@ def courier_menu():
     read_courier_db()
     courier_menu()
     
-    elif user_input = 4:
+    elif user_input == 4:
         print('\n\tHere is the Courier Menu:')
     read_courier_db()
             
@@ -161,6 +161,9 @@ def courier_menu():
                 
     print('\n\tHere is the new product menu: ')
     read_courier_db()
+
+    else:
+        print("Error, please try again")
 
 
 def orders_details():
