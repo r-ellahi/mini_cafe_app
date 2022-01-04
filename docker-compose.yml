@@ -13,7 +13,7 @@ services:
         target: /var/lib/mysql
   adminer:
     image: adminer
-    container_name: adminer1_container
+    container_name: adminer_container
     ports:
       - 8080:8080
 volumes:
